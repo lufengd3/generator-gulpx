@@ -71,13 +71,9 @@ var GulpxGenerator = yeoman.generators.Base.extend({
     var plugins = 
     [
       'gulp',
-      'gulp-livereload',
-      'gulp-serve',
-      'connect-livereload',
-      'gulp-watch',
+      'gulp-connect',
       'gulp-load-plugins',
-      'gulp-open',
-      'gutil'
+      'gulp-open'
     ];
     this.pluginArray = [];
 

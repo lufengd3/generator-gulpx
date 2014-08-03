@@ -3,26 +3,24 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var serverPort = 8080;
-var livereloadPort = 35729;
-var defaultTask = ['connectServer', 'broswer', 'liveServer', 'watch'];
+var defaultTask = ['connect', 'broswer', 'watchless'];
 
-gulp.task('connectServer', $.serve({
+gulp.task('connect', function() {
+  $.connect.server({
     root: 'app',
     port: serverPort,
-    middleware: require('connect-livereload')({port: livereloadPort})
-}));
+    livereload: true
+  });
 
-gulp.task("broswer", ['connectServer'], function(){
-    gulp.src("app/index.html")
-    .pipe($.open("", {url: "http://localhost:" + serverPort}));
+  gulp.watch(['app/*', 'app/css/*.css', 'app/js/*.js', 'app/img/*'], ['pageReload']);
 });
 
-gulp.task('liveServer', function() {
-    $.livereload.listen(livereloadPort);
+gulp.task('pageReload', function() {
+  gulp.src('app/')
+    .pipe($.connect.reload());
 });
 
-gulp.task('watch', function() {
-    $.watch({glob: ['app/*.html', 'app/css/*.css', 'app/js/*.js', 'app/images/**/*']}, function() {
-        $.livereload.changed("file", livereloadPort);
-    });
+gulp.task("broswer", ['connect'], function(){
+  gulp.src("app/index.html")
+  .pipe($.open("", {url: "http://localhost:" + serverPort}));
 });
