@@ -11,10 +11,10 @@ module.exports = function addtogulp(plugins) {
 			   + "\n    .pipe(gulp.dest('app/css'));"
 			   + "\n});"
 			   + "\n\ngulp.task('watchless', function() {"
-			   + "\n    $.watch({glob: 'app/css/less/*.less'}, function() {"
+			   + "\n    gulp.watch('app/css/less/*.less', function() {"
 			   + "\n        gulp.start('less');"
-			   + "\n    })"
-			   + "\n})"
+			   + "\n    });"
+			   + "\n});"
 			   + "\n\ndefaultTask.push('watchless');";
 
 	// choose which part to appen to gulpfile.js
