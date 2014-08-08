@@ -7,6 +7,7 @@ module.exports = function addtogulp(plugins) {
   			   + "\n    gulp.src('app/css/less/*.less')"
 			   + "\n    .pipe($.sourcemaps.init())"
 			   + "\n    .pipe($.less())"
+			   + "\n    .on('error', console.error.bind('error'))"
 			   + "\n    .pipe($.sourcemaps.write('maps'))"
 			   + "\n    .pipe(gulp.dest('app/css'));"
 			   + "\n});"
