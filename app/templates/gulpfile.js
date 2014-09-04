@@ -3,7 +3,7 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var serverPort = 8080;
-var defaultTask = ['connect', 'broswer', 'watchless'];
+var defaultTask = ['connect', 'broswer'];
 
 gulp.task('connect', function() {
   $.connect.server({
